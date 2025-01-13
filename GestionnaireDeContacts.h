@@ -200,6 +200,29 @@ public:
         ifs.close();
         std::cout << "Contacts charges avec succes depuis " << fichier << '\n';
     }
+    // Exporter les contacts en CSV
+    void exporterEnCSV(const std::string& fichierCSV) const {
+        std::ofstream ofs(fichierCSV);
+        if (!ofs) {
+            std::cerr << "Erreur lors de l'ouverture du fichier pour l'exportation.\n";
+            return;
+        }
+
+        // Écrire l'en-tête du fichier CSV
+        ofs << "Cle Unique,Nom,Prenom,Telephone,Email\n";
+
+        // Écrire les données des contacts
+        for (const auto& contact : contacts) {
+            ofs << contact.getCleUnique() << ","
+                << contact.getNom() << ","
+                << contact.getPrenom() << ","
+                << contact.getTelephone() << ","
+                << contact.getEmail() << "\n";
+        }
+
+        ofs.close();
+        std::cout << "Contacts exportes avec succes dans " << fichierCSV << '\n';
+    }
 };
 
 #endif

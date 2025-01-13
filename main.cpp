@@ -9,6 +9,7 @@ void afficherMenu() {
     std::cout << "4. Modifier un contact\n";
     std::cout << "5. Supprimer un contact\n";
     std::cout << "6. Trier les contacts\n";
+    std::cout << "7. Exporter les contacts en CSV\n";
     std::cout << "0. Quitter\n";
     std::cout << "Choisissez une option : ";
 }
@@ -96,6 +97,14 @@ int main() {
                 std::cin.ignore();
 
                 gestionnaire.trierContacts(critere, ascendant);
+                break;
+            }
+
+            case 7: {
+                std::string fichierCSV;
+                std::cout << "Entrez le nom du fichier CSV (par exemple : contacts.csv) : ";
+                std::getline(std::cin, fichierCSV);
+                gestionnaire.exporterEnCSV(fichierCSV);
                 break;
             }
 
