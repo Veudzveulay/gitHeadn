@@ -128,6 +128,28 @@ public:
         std::cout << "Aucun contact trouve avec l'ID : " << id << '\n';
     }
 
+    // Ajouter une méthode de tri
+    void trierContacts(const std::string& critere, bool ascendant) {
+        if (critere == "nom") {
+            std::sort(contacts.begin(), contacts.end(), [ascendant](const Contact& a, const Contact& b) {
+                return ascendant ? a.getNom() < b.getNom() : a.getNom() > b.getNom();
+            });
+        } else if (critere == "prenom") {
+            std::sort(contacts.begin(), contacts.end(), [ascendant](const Contact& a, const Contact& b) {
+                return ascendant ? a.getPrenom() < b.getPrenom() : a.getPrenom() > b.getPrenom();
+            });
+        } else if (critere == "email") {
+            std::sort(contacts.begin(), contacts.end(), [ascendant](const Contact& a, const Contact& b) {
+                return ascendant ? a.getEmail() < b.getEmail() : a.getEmail() > b.getEmail();
+            });
+        } else {
+            std::cout << "Critère de tri inconnu.\n";
+        }
+
+        std::cout << "Contacts trias par " << critere << " (" << (ascendant ? "ascendant" : "descendant") << ").\n";
+    }
+
+
     // Supprimer un contact
     void supprimerContact(const std::string& id) {
         auto it = std::remove_if(contacts.begin(), contacts.end(),
